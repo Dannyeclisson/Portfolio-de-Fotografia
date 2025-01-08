@@ -1,0 +1,50 @@
+.navbar {
+    position: relative;
+    padding: 10px 20px; /* Ajusta o espaçamento interno */
+    background-color: #2d2d2d;
+    display: flex;
+    justify-content: flex-end; /* Alinha o botão à direita */
+  }
+  
+  .menu-button {
+    background-color: #2d2d2d; /* Mesma cor do navbar */
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff5fd;
+  }
+  
+  .menu {
+    position: absolute;
+    top: 50px;
+    right: 0; /* Encosta o menu no lado direito da tela */
+    background-color: #0c0c0c; /* Fundo do menu */
+    color: #fff5fd;
+    padding: 20px;
+    border-radius: 0; /* Bordas quadradas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra para destacar o menu */
+    text-align: center; /* Centraliza o texto */
+    width: 200px; /* Define uma largura fixa */
+  }
+  
+  .menu h1 {
+    margin-bottom: 15px;
+    color: #fff5fd;
+  }
+  
+  .menu ul {
+    list-style: none; /* Remove os marcadores da lista */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu li {
+    margin: 10px 0; /* Espaçamento entre as opções */
+    color: #e5d0e2;
+    font-size: 18px;
+  }
+  
+  .menu li:hover {
+    color: #fff5fd; /* Efeito de hover nas opções */
+  }
+  
