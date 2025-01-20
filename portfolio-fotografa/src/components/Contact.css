@@ -1,0 +1,63 @@
+.contact-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 20px;
+    background-color: inherit; /* Mesma cor de fundo do projeto */
+  }
+  
+  .contact-image {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .contact-image img {
+    max-width: 100%;
+    height: 620px;
+    width: 400px;
+  }
+  
+  .contact-details {
+    flex: 1;
+    color: white; /* Texto branco */
+    padding: 0 20px;
+  }
+  
+  .contact-details h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .contact-details h2::after {
+    content: ""; /* Cria a linha */
+    display: block;
+    width: 20%; /* Ajuste a largura da linha */
+    height: 2px; /* Espessura da linha */
+    background-color: #ffffff; /* Cor da linha */
+    margin: 10px 0 0 0; /* Remove o alinhamento central */
+}
+  
+  .contact-details p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #e5d0e2; /* Cor do texto dos parágrafos */
+  }
+  
+  .contact-info {
+    font-size: 1rem;
+    line-height: 2;
+  }
+  
+  .contact-info span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #e5d0e2; /* Cor do texto dos parágrafos */
+  }
+  
+  .contact-info span i {
+    font-size: 1.5rem;
+  }
+  

@@ -57,7 +57,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-//Rota: Editar um projeto
+// Editar projeto (exceto imagem)
 router.put('/:id', async (req, res) => {
   console.log('Entrou na rota PUT /portfolio/:id');
   try {
@@ -79,6 +79,34 @@ router.put('/:id', async (req, res) => {
   } catch (err) {
     console.error('Erro ao editar projeto:', err);
     res.status(500).json({ message: 'Erro ao editar projeto' });
+  }
+});
+
+// Editar apenas a imagem do projeto
+router.put('/image/:id', upload.single('image'), async (req, res) => {
+  console.log('Entrou na rota PUT /portfolio/image/:id');
+  try {
+    const { id } = req.params;
+
+    if (!req.file) {
+      return res.status(400).json({ message: 'Nenhuma imagem foi enviada' });
+    }
+
+    const updatedProject = await Project.findByIdAndUpdate(
+      id,
+      { image: req.file.path },
+      { new: true } // Retorna o projeto atualizado
+    );
+
+    if (!updatedProject) {
+      return res.status(404).json({ message: 'Projeto não encontrado' });
+    }
+
+    console.log('Imagem atualizada:', updatedProject);
+    res.status(200).json(updatedProject);
+  } catch (err) {
+    console.error('Erro ao atualizar imagem:', err);
+    res.status(500).json({ message: 'Erro ao atualizar imagem' });
   }
 });
 
