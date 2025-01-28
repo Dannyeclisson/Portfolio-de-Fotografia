@@ -28,13 +28,13 @@
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 20px;
-    row-gap: 20px;
-    width: 40%;
+    grid-template-columns: repeat(3, 1fr); /* Define 3 colunas */
+    column-gap: 20px; /* Espaçamento horizontal entre os itens */
+    row-gap: 20px; /* Espaçamento vertical entre os itens */
+    width: 100%; /* Garante que o grid ocupe toda a largura disponível */
     justify-content: center;
     margin-top: 20px;
-    justify-items: center;
+    justify-items: center; /* Centraliza os itens dentro das colunas */
 }
 
 .portfolio-item {
@@ -43,8 +43,9 @@
     text-align: center;
     transition: transform 0.3s ease; /* Efeito ao passar o mouse */
     cursor: pointer;
-    width: 250px; /* Largura fixa dos itens */
-    height: 250px; /* Altura fixa dos itens */
+    width: 100%; /* Ajusta automaticamente com base no tamanho da coluna */
+    max-width: 250px; /* Limita o tamanho máximo */
+    height: 250px; /* Altura fixa */
     margin: 0; /* Remove margens adicionais */
     padding: 0; /* Remove qualquer padding */
 }
@@ -122,7 +123,7 @@
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     .portfolio-grid {
-        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas médias */
     }
 
     .portfolio-container h2 {

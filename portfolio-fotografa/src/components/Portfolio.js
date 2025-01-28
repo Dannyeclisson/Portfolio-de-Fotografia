@@ -3,7 +3,7 @@ import './Portfolio.css';
 
 const Portfolio = () => {
   const [projects, setProjects] = useState([]); // Projetos vindos do backend
-  const [visibleProjects, setVisibleProjects] = useState(2); // Quantos projetos estão visíveis
+  const [visibleProjects, setVisibleProjects] = useState(3); // Quantos projetos estão visíveis
 
   // Função para buscar projetos do backend
   useEffect(() => {

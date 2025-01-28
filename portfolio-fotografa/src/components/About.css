@@ -11,6 +11,8 @@
 .about-photo {
   width: 100%; /* Faz a imagem ocupar toda a coluna */
   border: none; /* Remove bordas da imagem */
+  max-height: 475px;
+  max-width: 380px;
 }
 
 .about-text {
