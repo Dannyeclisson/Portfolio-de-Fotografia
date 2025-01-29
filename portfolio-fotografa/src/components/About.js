@@ -1,23 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./About.css";
-import fotosobremim from "../images/fotosobremim.jpg";
 
 const About = () => {
+  const [photoUrl, setPhotoUrl] = useState(""); // Estado para a URL da foto
+
+  // Função para buscar a foto do backend
+  useEffect(() => {
+    fetch("http://localhost:5000/about/photo") // URL corrigida
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.photoUrl) {
+          setPhotoUrl(data.photoUrl);
+        }
+      })
+      .catch((error) => console.error("Erro ao carregar a foto:", error));
+  }, []);
+
   return (
     <div className="about">
       {/* Foto da Clara Amaral */}
-      <img
-        src={fotosobremim} // Usando a foto importada
-        alt="Clara Amaral"
-        className="about-photo"
-      />
-      
+      {photoUrl ? (
+        <img
+          src={photoUrl}
+          alt="Clara Amaral"
+          className="about-photo"
+        />
+      ) : (
+        <p>Carregando foto...</p>
+      )}
+
       {/* Texto Sobre Mim */}
       <div className="about-text">
         <h1>Clara Amaral</h1>
         <h2>Sobre Mim</h2>
-        
-        {/* Seção para os quadrados de "Minha Visão" e "Minha Missão" */}
+
         <div className="about-details">
           <div className="detail-box">
             <h3>Minha Visão</h3>

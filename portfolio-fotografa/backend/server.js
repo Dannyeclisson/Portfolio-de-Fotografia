@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
-const connectDB = require('./config/db'); // Importa a função para conectar ao MongoDB
+const connectDB = require('./config/db'); // Conexão com o MongoDB
 
 const app = express();
 
@@ -13,12 +13,14 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Conectar ao MongoDB usando connectDB()
+// Conectar ao MongoDB
 connectDB();
 
 // Rotas
 const portfolioRoutes = require('./routes/portfolio');
+const aboutRoutes = require('./routes/aboutRoutes'); // Nome corrigido
 app.use('/portfolio', portfolioRoutes);
+app.use('/about', aboutRoutes); // Adiciona as rotas do About
 
 // Porta do servidor
 const PORT = process.env.PORT || 5000;
