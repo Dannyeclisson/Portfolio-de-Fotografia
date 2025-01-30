@@ -20,9 +20,11 @@ connectDB();
 const portfolioRoutes = require('./routes/portfolio');
 const aboutRoutes = require('./routes/aboutRoutes'); // Nome corrigido
 const contactRoutes = require('./routes/contactRoutes');
+const blogRoutes = require("./routes/blogRoutes");
 app.use('/portfolio', portfolioRoutes);
 app.use('/about', aboutRoutes); // Adiciona as rotas do About
 app.use('/contact', contactRoutes);
+app.use("/blog", blogRoutes);
 
 // Porta do servidor
 const PORT = process.env.PORT || 5000;
