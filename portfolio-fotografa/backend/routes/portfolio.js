@@ -110,4 +110,43 @@ router.put('/image/:id', upload.single('image'), async (req, res) => {
   }
 });
 
+// Upload de várias fotos para um projeto específico
+router.post('/:id/photos', upload.array('photos', 10), async (req, res) => {
+  try {
+    const { id } = req.params;
+    const project = await Project.findById(id);
+
+    if (!project) {
+      return res.status(404).json({ message: 'Projeto não encontrado!' });
+    }
+
+    // Adiciona as URLs das fotos no array do projeto
+    const photoPaths = req.files.map(file => file.path);
+    project.photos.push(...photoPaths);
+    await project.save();
+
+    res.status(200).json({ message: 'Fotos enviadas com sucesso!', photos: project.photos });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao enviar as fotos!' });
+  }
+});
+
+// Obter um projeto específico (com fotos)
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const project = await Project.findById(id);
+
+    if (!project) {
+      return res.status(404).json({ message: 'Projeto não encontrado!' });
+    }
+
+    res.status(200).json(project);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao buscar o projeto!' });
+  }
+});
+
 module.exports = router;

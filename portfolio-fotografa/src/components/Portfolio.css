@@ -44,7 +44,9 @@
     transition: transform 0.3s ease; /* Efeito ao passar o mouse */
     cursor: pointer;
     width: 100%; /* Ajusta automaticamente com base no tamanho da coluna */
+    min-width: 250px; /* Limita a largura máxima */
     max-width: 250px; /* Limita o tamanho máximo */
+    flex-grow: 1;
     height: 250px; /* Altura fixa */
     margin: 0; /* Remove margens adicionais */
     padding: 0; /* Remove qualquer padding */
