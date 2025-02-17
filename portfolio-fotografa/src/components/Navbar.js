@@ -17,8 +17,9 @@ function Navbar() {
           <h1>Clara Amaral</h1>
           <ul>
             <li>Home</li>
-            <li>Fotos</li>
             <li>Sobre Mim</li>
+            <li>Trabalhos</li>
+            <li>Blog</li>
             <li>Contatos</li>
           </ul>
         </div>

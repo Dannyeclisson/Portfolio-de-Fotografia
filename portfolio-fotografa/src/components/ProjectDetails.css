@@ -1,0 +1,13 @@
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* Espaçamento menor entre as fotos */
+    justify-content: center;
+  }
+  
+  .photo-gallery img {
+    height: 200px; /* Altura fixa */
+    object-fit: cover;
+    border-radius: 5px; /* Cantos levemente arredondados */
+  }
+  

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './ProjectDetails.css'; // Importe o CSS
 
 const ProjectDetails = () => {
-  const { id } = useParams(); // Obtém o ID da URL
+  const { id } = useParams(); 
   const [project, setProject] = useState(null);
 
   useEffect(() => {
@@ -25,21 +26,13 @@ const ProjectDetails = () => {
 
   return (
     <div>
-      <h1>{project.client}</h1>
-      <p>{project.theme}</p>
-      <img 
-        src={`http://localhost:5000/${project.image}`} 
-        alt={project.client} 
-        style={{ width: '400px', height: 'auto' }} 
-      />
-      <h2>Fotos:</h2>
-      <div>
+      <h2>Galeria:</h2>
+      <div className="photo-gallery">
         {project.photos.map((photo, index) => (
           <img 
             key={index} 
             src={`http://localhost:5000/${photo}`} 
             alt={`Foto ${index + 1}`} 
-            style={{ width: '200px', height: 'auto', margin: '10px' }} 
           />
         ))}
       </div>
