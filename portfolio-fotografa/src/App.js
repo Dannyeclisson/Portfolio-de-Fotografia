@@ -11,14 +11,24 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
         <Routes>
           <Route path="/" element={
             <>
-              <About />
-              <Portfolio />
-              <Blog />
-              <Contact />
+              <div id="home">
+                <Navbar />
+              </div>
+              <div id="about">
+                <About />
+              </div>
+              <div id="portfolio">
+                <Portfolio />
+              </div>
+              <div id="blog">
+                <Blog />
+              </div>
+              <div id="contact">
+                <Contact />
+              </div>
             </>
           } />
           <Route path="/portfolio/:id" element={<ProjectDetails />} />

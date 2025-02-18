@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './ProjectDetails.css'; // Importe o CSS
+import Navbar from './Navbar'; // Importe o Navbar
+import './ProjectDetails.css';
 
 const ProjectDetails = () => {
   const { id } = useParams(); 
@@ -26,7 +27,7 @@ const ProjectDetails = () => {
 
   return (
     <div>
-      <h2>Galeria:</h2>
+      <Navbar /> {/* Adicione o Navbar aqui */}
       <div className="photo-gallery">
         {project.photos.map((photo, index) => (
           <img 
