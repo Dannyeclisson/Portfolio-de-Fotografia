@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 8fr 9fr; /* Ajuste para as colunas da foto e texto */
   gap: 50px;
-  padding: 20px;
+  padding: 35px 20px;
   max-width: 900px;
   margin: 20px auto;
   background-color: transparent;
