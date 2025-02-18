@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
@@ -16,6 +16,23 @@ function Navbar() {
     }
   };
 
+  useEffect(() => {
+    // Verifica se há necessidade de rolar até uma seção ao carregar a página
+    const section = sessionStorage.getItem("scrollToSection");
+    if (section && location.pathname === "/") {
+      window.scrollTo(0, document.getElementById(section).offsetTop);
+      sessionStorage.removeItem("scrollToSection");
+    }
+  }, [location.pathname]);
+
+  const menuItems = [
+    { label: "Home", section: "home" },
+    { label: "Sobre Mim", section: "about" },
+    { label: "Trabalhos", section: "portfolio" },
+    { label: "Blog", section: "blog" },
+    { label: "Contatos", section: "contact" }
+  ];
+
   return (
     <nav className="navbar">
       <button 
@@ -28,71 +45,24 @@ function Navbar() {
         <div className="menu">
           <h1>Clara Amaral</h1>
           <ul>
-            <li onClick={() => handleNavigation('/', 'home')}>Home</li>
-            <li>
-              {location.pathname === "/" ? (
-                <ScrollLink 
-                  to="about" 
-                  smooth={true} 
-                  duration={500}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Sobre Mim
-                </ScrollLink>
-              ) : (
-                <span onClick={() => handleNavigation('/', 'about')}>
-                  Sobre Mim
-                </span>
-              )}
-            </li>
-            <li>
-              {location.pathname === "/" ? (
-                <ScrollLink 
-                  to="portfolio" 
-                  smooth={true} 
-                  duration={500}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Trabalhos
-                </ScrollLink>
-              ) : (
-                <span onClick={() => handleNavigation('/', 'portfolio')}>
-                  Trabalhos
-                </span>
-              )}
-            </li>
-            <li>
-              {location.pathname === "/" ? (
-                <ScrollLink 
-                  to="blog" 
-                  smooth={true} 
-                  duration={500}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Blog
-                </ScrollLink>
-              ) : (
-                <span onClick={() => handleNavigation('/', 'blog')}>
-                  Blog
-                </span>
-              )}
-            </li>
-            <li>
-              {location.pathname === "/" ? (
-                <ScrollLink 
-                  to="contact" 
-                  smooth={true} 
-                  duration={500}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Contatos
-                </ScrollLink>
-              ) : (
-                <span onClick={() => handleNavigation('/', 'contact')}>
-                  Contatos
-                </span>
-              )}
-            </li>
+            {menuItems.map((item) => (
+              <li key={item.section}>
+                {location.pathname === "/" ? (
+                  <ScrollLink 
+                    to={item.section} 
+                    smooth={true} 
+                    duration={500}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {item.label}
+                  </ScrollLink>
+                ) : (
+                  <span onClick={() => handleNavigation('/', item.section)}>
+                    {item.label}
+                  </span>
+                )}
+              </li>
+            ))}
           </ul>
         </div>
       )}

@@ -1,7 +1,8 @@
 .photo-gallery {
+    padding-top: 48px;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px; /* Espaçamento menor entre as fotos */
+    gap: 7px; /* Espaçamento menor entre as fotos */
     justify-content: center;
   }
   
