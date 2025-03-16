@@ -1,0 +1,258 @@
+/* dashboard.css */
+
+/* Escopo do Dashboard */
+.dashboard-container {
+  font-family: 'Libre Baskerville', serif;
+  padding: 10px 3px 20px 3px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-container h2 {
+  text-align: center;
+  color: #fff5fd;
+  font-size: 30px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.dashboard-container h2::after {
+  content: "";
+  display: block;
+  width: 30%;
+  height: 2px;
+  background-color: #fff;
+  margin: 10px auto 0;
+}
+
+.exit {
+  margin-top: 10px;
+  padding: 6px 20px;
+  background-color: #fff5fd;
+  color: #000;
+  font-size: 14px;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.exit:hover {
+  background-color: rgb(192, 0, 0);
+}
+
+.update-photo {
+  margin-top: 10px;
+  padding: 6px 20px;
+  background-color: green;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.update-photo:hover {
+  background-color: darkgreen;
+}
+
+.dashboard-container .tabs {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.dashboard-container .tabs button {
+  margin: 0 10px;
+  padding: 6px 20px;
+  background-color: #fff5fd;
+  color: #000;
+  font-size: 14px;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.dashboard-container .tabs button:hover {
+  background-color: #850938;
+  color: white;
+}
+
+.dashboard-container .tabs button.active {
+  background-color: #660027;
+  color: white;
+}
+
+/* Estilos da área de conteúdo */
+.dashboard-container .tab-content {
+  padding: 20px;
+  background-color: #000000;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
+
+}
+
+.dashboard-container h3,
+.dashboard-container h4 {
+  color: #ffffff;
+  text-align: center;
+}
+
+.dashboard-container h5 {
+  color: rgb(255, 255, 255);
+}
+
+.dashboard-container input[type="text"],
+.dashboard-container input[type="file"] {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Centralizando a parte do "Sobre Mim" e "Gerenciar Trabalhos" */
+.dashboard-container .sobre-mim-container,
+.dashboard-container .trabalhos-container {
+  text-align: center;
+}
+
+.dashboard-container .sobre-mim-container img,
+.dashboard-container .trabalhos-container img {
+  max-width: 200px;
+  height: auto;
+  margin-top: 20px;
+}
+
+.dashboard-container .sobre-mim-container input[type="file"],
+.dashboard-container .trabalhos-container input[type="file"] {
+  margin-top: 10px;
+}
+
+.dashboard-container .sobre-mim-container button,
+.dashboard-container .trabalhos-container button {
+  margin-top: 10px;
+  padding: 6px 20px;
+  background-color: green;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.dashboard-container .sobre-mim-container button:hover,
+.dashboard-container .trabalhos-container button:hover {
+  background-color: darkgreen;
+}
+
+/* Estilizando o formulário de adicionar trabalho */
+.tab-content div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Inputs de Cliente e Tema menores e um abaixo do outro */
+.tab-content input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Input de Escolher Arquivo centralizado */
+.tab-content input[type="file"] {
+  margin: 10px 0;
+}
+
+/* Botão de Adicionar Trabalho centralizado */
+.tab-content button {
+  margin-top: 10px;
+  padding: 6px 20px;
+  background-color: green;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.tab-content button:hover {
+  background-color: darkgreen;
+}
+
+.dashboard-container .project-item {
+  padding: 10px;
+  background-color: #000000;
+  border: 1px solid #222222;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.dashboard-container .project-item button.edit {
+  margin-top: 10px;
+  padding: 6px 20px;
+  background-color: green;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.dashboard-container .project-item button:hover.edit {
+  background-color: darkgreen;
+}
+
+.dashboard-container .project-item button.delete {
+  margin-top: 10px;
+  padding: 6px 20px;
+  background-color: red;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.dashboard-container .project-item button:hover.delete {
+  background-color: darkred;
+}
+
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 15px;
+  }
+
+  .dashboard-container h2 {
+    font-size: 24px;
+  }
+
+  .dashboard-container .tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dashboard-container .tabs button {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .dashboard-container input[type="text"],
+  .dashboard-container input[type="file"] {
+    width: 100%;
+  }
+}

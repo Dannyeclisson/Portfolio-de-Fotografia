@@ -1,12 +1,16 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
-import Portfolio from './components/Portfolio';
-import ProjectDetails from './components/ProjectDetails';
+import Portfolio from "./components/Portfolio";
+import ProjectDetails from "./components/ProjectDetails";
 import Blog from "./components/Blog";
 import Contact from "./components/Contact";
-import { animateScroll as scroll, scroller } from "react-scroll";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./ProtectedRoute";
+import { animateScroll as scroller } from "react-scroll";
+
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -20,7 +24,7 @@ const ScrollToTop = () => {
           duration: 500,
           smooth: true,
         });
-      }, 100); // espera um pouco para garantir que a página carregou
+      }, 100); 
       sessionStorage.removeItem("scrollToSection");
     }
   }, [pathname]);
@@ -54,6 +58,16 @@ function App() {
             </>
           } />
           <Route path="/portfolio/:id" element={<ProjectDetails />} />
+          
+          {/* Rota de Login */}
+          <Route path="/login" element={<Login />} />
+
+          {/* Rota Protegida do Painel de Administração */}
+          <Route path="/admin/dashboard" element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
         </Routes>
       </div>
     </Router>

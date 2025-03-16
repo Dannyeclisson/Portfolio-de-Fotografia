@@ -1,0 +1,71 @@
+/* Estilos exclusivos para a página de login */
+.login-page {
+  font-family: 'Libre Baskerville', serif;
+  background-color: #1f2020; /* Novo fundo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Caixa de login */
+.login-page .login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-page .login-box {
+  background-color: #000000; /* Cor de fundo do quadrado */
+  padding: 40px;
+  border-radius: 5px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #e5d0e2;
+  text-align: center;
+}
+
+/* Título do formulário */
+.login-page h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: white;
+}
+
+/* Estilo para os campos de entrada */
+.login-page .input-container {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.login-page .input-container label {
+  font-size: 14px;
+}
+
+.login-page .input-container input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Botão de login */
+.login-page .login-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-family: inherit;
+  background-color: #660027;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+  
+}
+
+.login-page .login-btn:hover {
+  background-color: #850938;
+}
