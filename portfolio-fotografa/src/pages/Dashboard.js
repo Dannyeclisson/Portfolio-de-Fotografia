@@ -11,6 +11,13 @@ const Dashboard = () => {
   const [newPhoto, setNewPhoto] = useState(null);
   const [projects, setProjects] = useState([]);
   const [editingProjectId, setEditingProjectId] = useState(null);
+  const [blogs, setBlogs] = useState([]);
+    const [newBlog, setNewBlog] = useState({
+    title: "",
+    description: "",
+    link: "",
+    image: null,
+  });
   const [editingProjectData, setEditingProjectData] = useState({
     client: "",
     theme: "",
@@ -221,7 +228,47 @@ const Dashboard = () => {
     }
   };
   
-
+  const handleBlogImageChange = (e) => {
+    setNewBlog({
+      ...newBlog,
+      image: e.target.files[0],
+    });
+  };
+  
+  const handleAddBlog = async () => {
+    const formData = new FormData();
+    formData.append("title", newBlog.title);
+    formData.append("description", newBlog.description);
+    formData.append("link", newBlog.link);
+    if (newBlog.image) {
+      formData.append("image", newBlog.image);
+    }
+  
+    try {
+      const response = await fetch("http://localhost:5000/blog/create", {
+        method: "POST",
+        body: formData,
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        setBlogs([...blogs, result.newPost]);
+        alert("Blog adicionado com sucesso!");
+      } else {
+        alert("Erro ao adicionar blog: " + result.message);
+      }
+    } catch (error) {
+      console.error("Erro ao adicionar blog:", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetch("http://localhost:5000/blog")
+      .then((res) => res.json())
+      .then((data) => setBlogs(data))
+      .catch((err) => console.error("Erro ao buscar blogs:", err));
+  }, []);
+  
   return (
     <div className="dashboard-container">
       <h2>Painel de Administração</h2>
@@ -297,6 +344,42 @@ const Dashboard = () => {
                     ))}
                   </div>
                 )}
+              </div>
+            ))}
+          </div>
+        )}
+        {activeTab === "blog" && (
+          <div>
+            <h3>Adicionar Novo Blog</h3>
+            <input
+              type="text"
+              placeholder="Título do Blog"
+              value={newBlog.title}
+              onChange={(e) => setNewBlog({ ...newBlog, title: e.target.value })}
+            />
+            <textarea
+              placeholder="Descrição do Blog"
+              value={newBlog.description}
+              onChange={(e) => setNewBlog({ ...newBlog, description: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Link do Blog"
+              value={newBlog.link}
+              onChange={(e) => setNewBlog({ ...newBlog, link: e.target.value })}
+            />
+            <input type="file" onChange={handleBlogImageChange} />
+            <button onClick={handleAddBlog}>Adicionar Blog</button>
+
+            <h3>Blogs Existentes</h3>
+            {blogs.map((blog) => (
+              <div key={blog._id} className="blog-item">
+                <h5>{blog.title}</h5>
+                {blog.image && <img src={`http://localhost:5000/${blog.image}`} alt="Imagem do Blog" width="200" />}
+                <p>{blog.description}</p>
+                <a href={blog.link} target="_blank" rel="noopener noreferrer">Acessar Blog</a>
+                <button className="edit">Editar</button>
+                <button className="delete">Deletar</button>
               </div>
             ))}
           </div>
