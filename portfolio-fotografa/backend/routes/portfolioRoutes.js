@@ -132,6 +132,38 @@ router.post('/:id/photos', upload.array('photos', 10), async (req, res) => {
   }
 });
 
+const fs = require('fs');
+const path = require('path');
+
+// Deletar foto do projeto
+router.delete('/:id/photos', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { photo } = req.body; // Caminho da foto a ser deletada
+
+    // Remove a foto do diretório de uploads
+    const filePath = path.join(__dirname, '..', photo);
+    fs.unlinkSync(filePath);  // Exclui o arquivo
+
+    // Atualiza o banco de dados, removendo a foto do projeto
+    const updatedProject = await Project.findByIdAndUpdate(
+      id,
+      { $pull: { photos: photo } },
+      { new: true }
+    );
+
+    if (!updatedProject) {
+      return res.status(404).json({ message: 'Projeto não encontrado' });
+    }
+
+    res.status(200).json(updatedProject);
+  } catch (err) {
+    console.error('Erro ao deletar foto:', err);
+    res.status(500).json({ message: 'Erro ao deletar foto' });
+  }
+});
+
+
 router.delete('/:projectId/photos/:photoIndex', async (req, res) => {
   try {
     const { projectId, photoIndex } = req.params;

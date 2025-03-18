@@ -121,25 +121,28 @@ const Dashboard = () => {
 
   const handleProjectUpdate = async () => {
     if (!editingProjectId) return;
-
-    const formData = new FormData();
-    formData.append("client", editingProjectData.client);
-    formData.append("theme", editingProjectData.theme);
-    if (editingProjectData.image) {
-      formData.append("image", editingProjectData.image);
-    }
-
+  
+    const updatedData = {
+      client: editingProjectData.client,
+      theme: editingProjectData.theme,
+    };
+  
     try {
       const response = await fetch(`http://localhost:5000/portfolio/${editingProjectId}`, {
         method: "PUT",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
       });
-
+  
       const result = await response.json();
+  
       if (response.ok) {
-        setProjects(
-          projects.map((proj) =>
-            proj._id === result._id ? { ...proj, ...result } : proj
+        // Atualiza a lista de projetos no estado
+        setProjects((prevProjects) =>
+          prevProjects.map((proj) =>
+            proj._id === editingProjectId ? { ...proj, ...updatedData } : proj
           )
         );
         setEditingProjectId(null);
@@ -151,6 +154,73 @@ const Dashboard = () => {
       console.error("Erro ao atualizar projeto:", error);
     }
   };
+  
+
+  const handlePhotosChange = (e) => {
+    setEditingProjectData({
+      ...editingProjectData,
+      photos: [...e.target.files],
+    });
+  };
+
+  const handlePhotosUpload = async () => {
+    if (!editingProjectId || editingProjectData.photos.length === 0) return;
+
+    const formData = new FormData();
+    editingProjectData.photos.forEach((photo) => {
+      formData.append("photos", photo);
+    });
+
+    try {
+      const response = await fetch(`http://localhost:5000/portfolio/${editingProjectId}/photos`, {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        setProjects(
+          projects.map((proj) =>
+            proj._id === editingProjectId ? { ...proj, photos: result.photos } : proj
+          ),
+        );
+        alert("Fotos adicionadas com sucesso!");
+      } else {
+        alert("Erro ao adicionar fotos: " + result.message);
+      }
+    } catch (error) {
+      console.error("Erro ao enviar fotos:", error);
+    }
+  };
+
+  const handleDeletePhoto = async (projectId, photo) => {
+    try {
+      const response = await fetch(`http://localhost:5000/portfolio/${projectId}/photos`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ photo }),
+      });
+  
+      if (response.ok) {
+        // Atualiza o estado para remover a foto excluída
+        setProjects(
+          projects.map((proj) =>
+            proj._id === projectId
+              ? { ...proj, photos: proj.photos.filter((p) => p !== photo) }
+              : proj
+          )
+        );
+        alert("Foto deletada com sucesso!");
+      } else {
+        alert("Erro ao deletar foto");
+      }
+    } catch (error) {
+      console.error("Erro ao deletar foto:", error);
+    }
+  };
+  
 
   return (
     <div className="dashboard-container">
@@ -200,12 +270,31 @@ const Dashboard = () => {
                 {project.image && <img src={`http://localhost:5000/${project.image}`} alt="Imagem do projeto" width="400" />}
                 <button onClick={() => handleEditProject(project)} className="edit">Editar</button>
                 <button onClick={() => handleDeleteProject(project._id)} className="delete">Deletar</button>
+
                 {editingProjectId === project._id && (
                   <div>
                     <h3>Editar Trabalho</h3>
                     <input type="text" value={editingProjectData.client} onChange={(e) => setEditingProjectData({ ...editingProjectData, client: e.target.value })} />
                     <input type="text" value={editingProjectData.theme} onChange={(e) => setEditingProjectData({ ...editingProjectData, theme: e.target.value })} />
                     <button onClick={handleProjectUpdate}>Atualizar</button>
+                    
+                    <div>
+                      <h3>Adicionar fotos ao Projeto</h3>
+                      <input
+                        type="file"
+                        multiple
+                        onChange={handlePhotosChange}
+                      />
+                      <button onClick={handlePhotosUpload}>Adicionar Fotos</button>
+                    </div>
+
+                    <h3>Fotos do Trabalho:</h3>
+                    {project.photos && project.photos.map((photo, index) => (
+                      <div key={index} className="photo-item">
+                        <img src={`http://localhost:5000/${photo}`} alt={`Foto ${index + 1}`} width="150" />
+                        <button onClick={() => handleDeletePhoto(project._id, photo)} className="delete">Deletar Foto</button>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
