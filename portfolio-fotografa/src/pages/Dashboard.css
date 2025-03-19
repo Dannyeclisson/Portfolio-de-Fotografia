@@ -91,17 +91,21 @@
   background-color: #000000;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
-
+  align-content: center;
 }
 
 .dashboard-container h3,
 .dashboard-container h4 {
   color: #ffffff;
   text-align: center;
+  padding: 5px;
 }
 
-.dashboard-container h5 {
-  color: rgb(255, 255, 255);
+.dashboard-container p {
+  font-size: 1rem;
+  padding: 8px;
+  color: #e5d0e2; /* Cor do texto dos parágrafos */
+  text-align: justify;
 }
 
 .dashboard-container input[type="text"],
@@ -231,6 +235,56 @@
   background-color: darkred;
 }
 
+.blog-item{
+  padding: 10px;
+  background-color: #000000;
+  border: 1px solid #222222;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+  width: 422px;
+}
+
+.blog-description {
+  height: 41px;
+  width: 500px;
+  padding: 8px;
+  margin: 5px 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+.dashboard-container .blog-item button.edit {
+  margin-top: 10px;
+  padding: 6px 20px;
+  background-color: green;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.dashboard-container .blog-item button.edit:hover.edit {
+  background-color: darkgreen;
+}
+
+.dashboard-container .blog-item button.delete {
+  margin-top: 10px;
+  padding: 6px 20px;
+  background-color: red;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.dashboard-container .blog-item button:hover.delete {
+  background-color: darkred;
+}
 
 @media (max-width: 768px) {
   .dashboard-container {
@@ -252,7 +306,8 @@
   }
 
   .dashboard-container input[type="text"],
-  .dashboard-container input[type="file"] {
+  .dashboard-container input[type="file"],
+  .dashboard-container .blog-description {
     width: 100%;
   }
 }

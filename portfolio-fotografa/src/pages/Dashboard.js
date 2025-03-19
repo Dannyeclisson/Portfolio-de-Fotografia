@@ -12,7 +12,7 @@ const Dashboard = () => {
   const [projects, setProjects] = useState([]);
   const [editingProjectId, setEditingProjectId] = useState(null);
   const [blogs, setBlogs] = useState([]);
-    const [newBlog, setNewBlog] = useState({
+  const [newBlog, setNewBlog] = useState({
     title: "",
     description: "",
     link: "",
@@ -313,7 +313,7 @@ const Dashboard = () => {
             <h3>Trabalhos Existentes</h3>
             {projects.map((project) => (
               <div key={project._id} className="project-item">
-                <h5>{project.client} - {project.theme}</h5>
+                <h4>{project.client} - {project.theme}</h4>
                 {project.image && <img src={`http://localhost:5000/${project.image}`} alt="Imagem do projeto" width="400" />}
                 <button onClick={() => handleEditProject(project)} className="edit">Editar</button>
                 <button onClick={() => handleDeleteProject(project._id)} className="delete">Deletar</button>
@@ -357,7 +357,7 @@ const Dashboard = () => {
               value={newBlog.title}
               onChange={(e) => setNewBlog({ ...newBlog, title: e.target.value })}
             />
-            <textarea
+            <textarea className="blog-description"
               placeholder="Descrição do Blog"
               value={newBlog.description}
               onChange={(e) => setNewBlog({ ...newBlog, description: e.target.value })}
@@ -374,10 +374,10 @@ const Dashboard = () => {
             <h3>Blogs Existentes</h3>
             {blogs.map((blog) => (
               <div key={blog._id} className="blog-item">
-                <h5>{blog.title}</h5>
-                {blog.image && <img src={`http://localhost:5000/${blog.image}`} alt="Imagem do Blog" width="200" />}
+                <h4>{blog.title}</h4>
+                {blog.image && <img src={`http://localhost:5000/${blog.image}`} alt="Imagem do Blog" width="400" />}
                 <p>{blog.description}</p>
-                <a href={blog.link} target="_blank" rel="noopener noreferrer">Acessar Blog</a>
+                <a href={blog.link} target="_blank" rel="noopener noreferrer">Acessar Link</a>
                 <button className="edit">Editar</button>
                 <button className="delete">Deletar</button>
               </div>
