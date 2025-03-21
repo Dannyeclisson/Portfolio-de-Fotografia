@@ -58,8 +58,8 @@
   padding: 10px;
   font-size: 16px;
   font-family: inherit;
-  background-color: #660027;
-  color: white;
+  background-color: #f2b3d4;
+  color: #000;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s;
@@ -67,5 +67,5 @@
 }
 
 .login-page .login-btn:hover {
-  background-color: #850938;
+  background-color: #dc82af;
 }

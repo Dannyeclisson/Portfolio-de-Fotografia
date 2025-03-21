@@ -76,12 +76,12 @@
 }
 
 .dashboard-container .tabs button:hover {
-  background-color: #850938;
+  background-color: #f2b3d4;
   color: white;
 }
 
 .dashboard-container .tabs button.active {
-  background-color: #660027;
+  background-color: #dc82af;
   color: white;
 }
 
@@ -96,7 +96,7 @@
 
 .dashboard-container h3,
 .dashboard-container h4 {
-  color: #ffffff;
+  color: white;
   text-align: center;
   padding: 5px;
 }
