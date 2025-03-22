@@ -12,6 +12,13 @@ const Dashboard = () => {
   const [projects, setProjects] = useState([]);
   const [editingProjectId, setEditingProjectId] = useState(null);
   const [blogs, setBlogs] = useState([]);
+  const [editingBlogId, setEditingBlogId] = useState(null);
+  const [editingBlogData, setEditingBlogData] = useState({
+  title: "",
+  description: "",
+  link: "",
+  image: null,
+});
   const [newBlog, setNewBlog] = useState({
     title: "",
     description: "",
@@ -268,6 +275,70 @@ const Dashboard = () => {
       .then((data) => setBlogs(data))
       .catch((err) => console.error("Erro ao buscar blogs:", err));
   }, []);
+
+  const handleEditBlog = (blog) => {
+    setEditingBlogId(blog._id);
+    setEditingBlogData({
+      title: blog.title,
+      description: blog.description,
+      link: blog.link,
+      image: null, // Mantenha a imagem atual ou permita a troca
+    });
+  };
+  
+  const handleBlogUpdate = async () => {
+    if (!editingBlogId) return;
+  
+    const updatedData = {
+      title: editingBlogData.title,
+      description: editingBlogData.description,
+      link: editingBlogData.link,
+    };
+  
+    try {
+      const response = await fetch(`http://localhost:5000/blog/edit/${editingBlogId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        // Atualiza a lista de blogs no estado
+        setBlogs((prevBlogs) =>
+          prevBlogs.map((blog) =>
+            blog._id === editingBlogId ? { ...blog, ...updatedData } : blog
+          )
+        );
+        setEditingBlogId(null);
+        alert("Blog atualizado com sucesso!");
+      } else {
+        alert("Erro ao atualizar blog: " + result.message);
+      }
+    } catch (error) {
+      console.error("Erro ao atualizar blog:", error);
+    }
+  };
+  
+  const handleDeleteBlog = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/blog/delete/${id}`, {
+        method: "DELETE",
+      });
+  
+      if (response.ok) {
+        setBlogs(blogs.filter((blog) => blog._id !== id));
+        alert("Blog deletado com sucesso!");
+      } else {
+        alert("Erro ao deletar blog");
+      }
+    } catch (error) {
+      console.error("Erro ao deletar blog:", error);
+    }
+  };
   
   return (
     <div className="dashboard-container">
@@ -378,8 +449,29 @@ const Dashboard = () => {
                 {blog.image && <img src={`http://localhost:5000/${blog.image}`} alt="Imagem do Blog" width="400" />}
                 <p>{blog.description}</p>
                 <a href={blog.link} target="_blank" rel="noopener noreferrer">Acessar Link</a>
-                <button className="edit">Editar</button>
-                <button className="delete">Deletar</button>
+                <button onClick={() => handleEditBlog(blog)} className="edit">Editar</button>
+                <button onClick={() => handleDeleteBlog(blog._id)} className="delete">Deletar</button>
+                {editingBlogId === blog._id && (
+              <div>
+                <h3>Editar Blog</h3>
+                <input
+                  type="text"
+                  value={editingBlogData.title}
+                  onChange={(e) => setEditingBlogData({ ...editingBlogData, title: e.target.value })}
+                />
+                <input
+                  type="text"
+                  value={editingBlogData.description}
+                  onChange={(e) => setEditingBlogData({ ...editingBlogData, description: e.target.value })}
+                />
+                <input
+                  type="text"
+                  value={editingBlogData.link}
+                  onChange={(e) => setEditingBlogData({ ...editingBlogData, link: e.target.value })}
+                />
+                <button onClick={handleBlogUpdate}>Atualizar</button>
+              </div>
+            )}
               </div>
             ))}
           </div>
