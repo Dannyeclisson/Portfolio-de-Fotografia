@@ -365,7 +365,7 @@ const Dashboard = () => {
       <div className="tab-content">
         {activeTab === "sobre" && (
           <div className="sobre-mim-container">
-            <h3>Sobre Mim</h3>
+            <h3>Editar Foto do Sobre Mim</h3>
             {about.photo && <img src={`http://localhost:5000/${about.photo}`} alt="Foto" width="200" />} <br />
             <input type="file" onChange={handlePhotoChange} /> <br />
             <button onClick={handlePhotoUpload} className="update-photo">Atualizar Foto</button>
@@ -394,7 +394,7 @@ const Dashboard = () => {
             {projects.map((project) => (
               <div key={project._id} className="project-item">
                 <h4>{project.client} - {project.theme}</h4>
-                {project.image && <img src={`http://localhost:5000/${project.image}`} alt="Imagem do projeto" width="400" />}
+                {project.image && <img src={`http://localhost:5000/${project.image}`} alt="Imagem do projeto" className="blog-image" />}
                 <button onClick={() => handleEditProject(project)} className="edit">Editar</button>
                 <button onClick={() => handleDeleteProject(project._id)} className="delete">Deletar</button>
 
@@ -455,34 +455,34 @@ const Dashboard = () => {
             {blogs.map((blog) => (
               <div key={blog._id} className="blog-item">
                 <h4>{blog.title}</h4>
-                {blog.image && <img src={`http://localhost:5000/${blog.image}`} alt="Imagem do Blog" width="400" />}
+                {blog.image && <img src={`http://localhost:5000/${blog.image}`} alt="Imagem do Blog" className="blog-image" />}
                 <p>{blog.description}</p>
-                <a href={blog.link} target="_blank" rel="noopener noreferrer">Acessar Link</a>
+                <a href={blog.link} target="_blank" rel="noopener noreferrer">Acessar Link do Blog</a>
                 <button onClick={() => handleEditBlog(blog)} className="edit">Editar</button>
                 <button onClick={() => handleDeleteBlog(blog._id)} className="delete">Deletar</button>
                 {editingBlogId === blog._id && (
               <div>
                 <h3>Editar Blog</h3>
-                <input
-                  type="text"
-                  value={editingBlogData.title}
-                  onChange={(e) => setEditingBlogData({ ...editingBlogData, title: e.target.value })}
-                />
-                <input
-                  type="text"
-                  value={editingBlogData.description}
-                  onChange={(e) => setEditingBlogData({ ...editingBlogData, description: e.target.value })}
-                />
-                <input
-                  type="text"
-                  value={editingBlogData.link}
-                  onChange={(e) => setEditingBlogData({ ...editingBlogData, link: e.target.value })}
-                />
-                <input
-                 type="file" 
-                 onChange={handleEditBlogImageChange} />
-                <button onClick={handleBlogUpdate}>Atualizar</button>
-              </div>
+                  <input
+                    type="text"
+                    value={editingBlogData.title}
+                    onChange={(e) => setEditingBlogData({ ...editingBlogData, title: e.target.value })}
+                  />
+                  <input
+                    type="text"
+                    value={editingBlogData.description}
+                    onChange={(e) => setEditingBlogData({ ...editingBlogData, description: e.target.value })}
+                  />
+                  <input
+                    type="text"
+                    value={editingBlogData.link}
+                    onChange={(e) => setEditingBlogData({ ...editingBlogData, link: e.target.value })}
+                  />
+                  <input
+                  type="file" 
+                  onChange={handleEditBlogImageChange} />
+                  <button onClick={handleBlogUpdate}>Atualizar</button>
+                </div>
             )}
               </div>
             ))}

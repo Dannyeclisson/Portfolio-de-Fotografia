@@ -42,7 +42,6 @@
 }
 
 .update-photo {
-  margin-top: 10px;
   padding: 6px 20px;
   background-color: green;
   color: #ffffff;
@@ -76,12 +75,12 @@
 }
 
 .dashboard-container .tabs button:hover {
-  background-color: #f2b3d4;
+  background-color: #e692d8;
   color: white;
 }
 
 .dashboard-container .tabs button.active {
-  background-color: #dc82af;
+  background-color: #e7aadd; 
   color: white;
 }
 
@@ -98,7 +97,7 @@
 .dashboard-container h4 {
   color: white;
   text-align: center;
-  padding: 5px;
+  padding: 10px;
 }
 
 .dashboard-container p {
@@ -201,6 +200,13 @@
   border-radius: 5px;
   margin-bottom: 15px;
   text-align: center;
+  width: 422px;
+}
+
+.project-image {
+  width: 100%; /* Garante que todas as imagens ocupem a largura total do contêiner */
+  height: 350px; /* Define uma altura fixa para manter a uniformidade */
+  object-fit: cover; /* Corta e ajusta a imagem para preencher o espaço sem distorcer */
 }
 
 .dashboard-container .project-item button.edit {
@@ -220,7 +226,7 @@
 }
 
 .dashboard-container .project-item button.delete {
-  margin-top: 10px;
+  margin: 10px;
   padding: 6px 20px;
   background-color: red;
   color: #ffffff;
@@ -264,6 +270,12 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.blog-image {
+  width: 100%; /* Garante que todas as imagens ocupem a largura total do contêiner */
+  height: 350px; /* Define uma altura fixa para manter a uniformidade */
+  object-fit: cover; /* Corta e ajusta a imagem para preencher o espaço sem distorcer */
 }
 
 .dashboard-container .blog-item button.edit:hover.edit {

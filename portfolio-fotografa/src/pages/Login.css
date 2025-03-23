@@ -58,7 +58,7 @@
   padding: 10px;
   font-size: 16px;
   font-family: inherit;
-  background-color: #f2b3d4;
+  background-color: #e7aadd;
   color: #000;
   border: none;
   cursor: pointer;
@@ -67,5 +67,5 @@
 }
 
 .login-page .login-btn:hover {
-  background-color: #dc82af;
+  background-color: #e692d8;
 }
