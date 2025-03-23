@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const BlogPost = require("../models/blogModel");
+const fs = require("fs");
+const path = require("path");
 
 // Configuração do multer para uploads de imagens
 const storage = multer.diskStorage({
@@ -47,17 +49,31 @@ router.get("/", async (req, res) => {
 router.put("/edit/:id", upload.single("image"), async (req, res) => {
   try {
     const { title, description, link } = req.body;
-    const image = req.file ? req.file.path : req.body.image;
+    const post = await BlogPost.findById(req.params.id);
 
-    const updatedPost = await BlogPost.findByIdAndUpdate(
-      req.params.id,
-      { title, image, description, link },
-      { new: true }
-    );
-
-    if (!updatedPost) {
+    if (!post) {
       return res.status(404).json({ message: "Post não encontrado." });
     }
+
+    // Se uma nova imagem for enviada, exclua a antiga
+    let updatedImage = post.image; 
+    if (req.file) {
+      // Excluir imagem antiga se existir
+      if (post.image) {
+        const oldImagePath = path.join(__dirname, "..", post.image);
+        fs.unlink(oldImagePath, (err) => {
+          if (err) console.error("Erro ao excluir imagem antiga:", err);
+        });
+      }
+      updatedImage = req.file.path;
+    }
+
+    // Atualizar o post
+    const updatedPost = await BlogPost.findByIdAndUpdate(
+      req.params.id,
+      { title, image: updatedImage, description, link },
+      { new: true }
+    );
 
     res.status(200).json({ message: "Post atualizado com sucesso!", updatedPost });
   } catch (error) {

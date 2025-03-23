@@ -285,32 +285,40 @@ const Dashboard = () => {
       image: null, // Mantenha a imagem atual ou permita a troca
     });
   };
+
+  const handleEditBlogImageChange = (e) => {
+    setEditingBlogData({
+      ...editingBlogData,
+      image: e.target.files[0], // Salva o arquivo no estado
+    });
+  };
+  
   
   const handleBlogUpdate = async () => {
     if (!editingBlogId) return;
   
-    const updatedData = {
-      title: editingBlogData.title,
-      description: editingBlogData.description,
-      link: editingBlogData.link,
-    };
+    const formData = new FormData();
+    formData.append("title", editingBlogData.title);
+    formData.append("description", editingBlogData.description);
+    formData.append("link", editingBlogData.link);
+  
+    if (editingBlogData.image) {
+      formData.append("image", editingBlogData.image); // Adiciona a nova imagem
+    }
   
     try {
       const response = await fetch(`http://localhost:5000/blog/edit/${editingBlogId}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
+        body: formData, // Envia os dados como FormData
       });
   
       const result = await response.json();
   
       if (response.ok) {
-        // Atualiza a lista de blogs no estado
+        // Atualiza o estado do frontend com os novos dados do blog editado
         setBlogs((prevBlogs) =>
           prevBlogs.map((blog) =>
-            blog._id === editingBlogId ? { ...blog, ...updatedData } : blog
+            blog._id === editingBlogId ? { ...blog, ...result.updatedPost } : blog
           )
         );
         setEditingBlogId(null);
@@ -322,6 +330,7 @@ const Dashboard = () => {
       console.error("Erro ao atualizar blog:", error);
     }
   };
+  
   
   const handleDeleteBlog = async (id) => {
     try {
@@ -469,6 +478,9 @@ const Dashboard = () => {
                   value={editingBlogData.link}
                   onChange={(e) => setEditingBlogData({ ...editingBlogData, link: e.target.value })}
                 />
+                <input
+                 type="file" 
+                 onChange={handleEditBlogImageChange} />
                 <button onClick={handleBlogUpdate}>Atualizar</button>
               </div>
             )}
