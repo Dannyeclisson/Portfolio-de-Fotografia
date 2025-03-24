@@ -15,58 +15,66 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Rota para atualizar a foto de contato
-router.put('/edit-photo', upload.single('photo'), async (req, res) => {
-  try {
-    const { id } = req.body;
-    const photoPath = req.file.path.replace("\\", "/"); // Corrigindo caminho para funcionar no frontend
-
-    const contact = await Contact.findByIdAndUpdate(
-      id,
-      { photo: photoPath },
-      { new: true }
-    );
-
-    if (!contact) {
-      return res.status(404).json({ message: 'Registro de contato não encontrado.' });
-    }
-
-    res.status(200).json({ message: 'Foto do contato atualizada com sucesso!', contact });
-  } catch (error) {
-    res.status(500).json({ message: 'Erro ao atualizar a foto.', error });
-  }
-});
-
-// Rota para buscar a última foto de contato cadastrada
-router.get('/photo', async (req, res) => {
-  try {
-    const contact = await Contact.findOne().sort({ createdAt: -1 }); // Busca o último contato adicionado
-    if (!contact || !contact.photo) {
-      return res.status(404).json({ message: 'Nenhuma foto encontrada.' });
-    }
-    
-    const photoUrl = `http://localhost:5000/${contact.photo.replace("\\", "/")}`;
-    res.status(200).json({ photoUrl });
-  } catch (error) {
-    res.status(500).json({ message: 'Erro ao buscar a foto.', error });
-  }
-});
-
-// Rota para criar um novo contato com foto
+// Rota para criar um novo registro "Contatos" com a foto inicial
 router.post('/', upload.single('photo'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'Nenhuma imagem enviada.' });
     }
 
-    const newContact = new Contact({
-      photo: req.file.path.replace("\\", "/"), // Corrigindo caminho da imagem
-    });
+    const photoPath = req.file.path; // Caminho da imagem salva
 
-    await newContact.save();
-    res.status(201).json({ message: 'Contato criado com sucesso!', contact: newContact });
+    const contact = new Contact({ photo: photoPath });
+    await contact.save();
+
+    res.status(201).json({ message: 'Registro criado com sucesso!', contact });
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao criar o contato.', error });
+    res.status(500).json({ message: 'Erro ao criar o registro.', error });
+  }
+});
+
+
+// Rota para atualizar a foto
+router.put('/edit-photo', upload.single('photo'), async (req, res) => {
+  try {
+    const id = req.body.id; // ← Corrija para pegar do FormData
+    if (!id) return res.status(400).json({ message: 'ID ausente' });
+
+    const contact = await Contact.findByIdAndUpdate(
+      id,
+      { photo: req.file.path },
+      { new: true }
+    );
+
+    res.status(200).json({ 
+      message: 'Foto atualizada!', 
+      contact // ← Garanta que isso está sendo retornado
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Erro interno', error });
+  }
+});
+
+// Rota para buscar o registro "Contatos"
+router.get('/', async (req, res) => {
+  try {
+    const contact = await Contact.findOne(); // Busca o único registro "Contatos"
+    res.status(200).json(contact);
+  } catch (error) {
+    res.status(500).json({ message: 'Erro ao buscar o registro.', error });
+  }
+});
+
+// Rota para buscar a foto
+router.get('/photo', async (req, res) => {
+  try {
+    const contact = await Contact.findOne();
+    if (!contact || !contact.photo) {
+      return res.status(404).json({ message: 'Nenhuma foto encontrada.' });
+    }
+    res.sendFile(path.resolve(contact.photo));
+  } catch (error) {
+    res.status(500).json({ message: 'Erro ao buscar a foto.', error });
   }
 });
 

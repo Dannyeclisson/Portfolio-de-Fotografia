@@ -121,24 +121,28 @@
 
 /* Centralizando a parte do "Sobre Mim" e "Gerenciar Trabalhos" */
 .dashboard-container .sobre-mim-container,
-.dashboard-container .trabalhos-container {
+.dashboard-container .trabalhos-container,
+.dashboard-container .contact-container {
   text-align: center;
 }
 
 .dashboard-container .sobre-mim-container img,
-.dashboard-container .trabalhos-container img {
+.dashboard-container .trabalhos-container img,
+.dashboard-container .contact-container img {
   max-width: 200px;
   height: auto;
   margin-top: 20px;
 }
 
 .dashboard-container .sobre-mim-container input[type="file"],
-.dashboard-container .trabalhos-container input[type="file"] {
+.dashboard-container .trabalhos-container input[type="file"],
+.dashboard-container .contact-container input[type="file"] {
   margin-top: 10px;
 }
 
 .dashboard-container .sobre-mim-container button,
-.dashboard-container .trabalhos-container button {
+.dashboard-container .trabalhos-container button,
+.dashboard-container .contact-container button {
   margin-top: 10px;
   padding: 6px 20px;
   background-color: green;

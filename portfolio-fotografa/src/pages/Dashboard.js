@@ -9,6 +9,7 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("sobre");
   const [about, setAbout] = useState({ photo: "", description: "" });
   const [newPhoto, setNewPhoto] = useState(null);
+  const [contact, setContact] = useState({ photo: '', description:'' });
   const [projects, setProjects] = useState([]);
   const [editingProjectId, setEditingProjectId] = useState(null);
   const [blogs, setBlogs] = useState([]);
@@ -348,6 +349,51 @@ const Dashboard = () => {
       console.error("Erro ao deletar blog:", error);
     }
   };
+
+  useEffect(() => {
+    fetch("http://localhost:5000/contact")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          setContact(data);
+        } else {
+          setContact({ photo: "" }); // Evita undefined
+        }
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar o contato:", error);
+        setContact({ photo: "" }); // Evita erro na interface
+      });
+  }, []);
+  
+
+  const handleContactPhotoUpload = async () => {
+    if (!newPhoto || !contact?._id) { // Adicione verificação
+      alert("Selecione uma foto ou contato não carregado");
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append("photo", newPhoto);
+    formData.append("id", contact._id);
+  
+    try {
+      const response = await fetch("http://localhost:5000/contact/edit-photo", {
+        method: "PUT",
+        body: formData,
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        setContact(result.contact); // ← Corrija para setContact
+        alert("Foto atualizada com sucesso!");
+      } else {
+        alert("Erro: " + result.message);
+      }
+    } catch (error) {
+      console.error("Erro:", error);
+    }
+  };
   
   return (
     <div className="dashboard-container">
@@ -486,6 +532,20 @@ const Dashboard = () => {
             )}
               </div>
             ))}
+          </div>
+        )}
+        {activeTab === "contatos" && (
+          <div className="contact-container">
+            <h3>Editar Foto dos Contatos</h3>
+            {contact?.photo && ( // ← Adicione optional chaining
+              <img 
+                src={`http://localhost:5000/${contact.photo}`} 
+                alt="Foto" 
+                width="200" 
+              />
+            )}
+            <input type="file" onChange={handlePhotoChange} />
+            <button onClick={handleContactPhotoUpload}>Atualizar Foto</button>
           </div>
         )}
       </div>
