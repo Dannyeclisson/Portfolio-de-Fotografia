@@ -412,8 +412,8 @@ const Dashboard = () => {
         {activeTab === "sobre" && (
           <div className="sobre-mim-container">
             <h3>Editar Foto do Sobre Mim</h3>
-            {about.photo && <img src={`http://localhost:5000/${about.photo}`} alt="Foto" width="200" />} <br />
-            <input type="file" onChange={handlePhotoChange} /> <br />
+            {about.photo && <img src={`http://localhost:5000/${about.photo}`} alt="Foto" width="200" />}
+            <input type="file" onChange={handlePhotoChange} />
             <button onClick={handlePhotoUpload} className="update-photo">Atualizar Foto</button>
           </div>
         )}
@@ -545,7 +545,7 @@ const Dashboard = () => {
               />
             )}
             <input type="file" onChange={handlePhotoChange} />
-            <button onClick={handleContactPhotoUpload}>Atualizar Foto</button>
+            <button onClick={handleContactPhotoUpload} className="update-photo">Atualizar Foto</button>
           </div>
         )}
       </div>
