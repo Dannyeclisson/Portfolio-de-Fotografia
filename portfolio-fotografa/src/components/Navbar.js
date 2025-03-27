@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link as ScrollLink } from "react-scroll";
+import { Link as ScrollLink, scroller} from "react-scroll";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
 
@@ -8,22 +8,37 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleNavigation = (path, section) => {
+  const handleNavigation = (section) => {
     setMenuOpen(false);
-    if (location.pathname !== "/") {
-      sessionStorage.setItem("scrollToSection", section);
-      navigate(path);
+    
+    // Se NÃO está na página pública, navega para ela primeiro
+    if (location.pathname !== "/home") {
+      navigate("/home", {
+        state: { scrollTo: section } // Passa a seção como estado
+      });
+    } else {
+      // Já está na página pública, apenas faz o scroll
+      scroller.scrollTo(section, {
+        duration: 500,
+        smooth: true,
+        offset: -70 // Ajuste para altura do navbar
+      });
     }
   };
 
   useEffect(() => {
-    // Verifica se há necessidade de rolar até uma seção ao carregar a página
-    const section = sessionStorage.getItem("scrollToSection");
-    if (section && location.pathname === "/") {
-      window.scrollTo(0, document.getElementById(section).offsetTop);
-      sessionStorage.removeItem("scrollToSection");
+    // Executa scroll após navegação
+    if (location.state?.scrollTo) {
+      scroller.scrollTo(location.state.scrollTo, {
+        duration: 500,
+        smooth: true,
+        offset: -70
+      });
+      
+      // Limpa o estado para evitar repetição
+      navigate(location.pathname, { replace: true, state: {} });
     }
-  }, [location.pathname]);
+  }, [location]);
 
   const menuItems = [
     { label: "Home", section: "home" },
@@ -47,20 +62,12 @@ function Navbar() {
           <ul>
             {menuItems.map((item) => (
               <li key={item.section}>
-                {location.pathname === "/" ? (
-                  <ScrollLink 
-                    to={item.section} 
-                    smooth={true} 
-                    duration={500}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {item.label}
-                  </ScrollLink>
-                ) : (
-                  <span onClick={() => handleNavigation('/', item.section)}>
-                    {item.label}
-                  </span>
-                )}
+                <span 
+                  onClick={() => handleNavigation(item.section)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {item.label}
+                </span>
               </li>
             ))}
           </ul>

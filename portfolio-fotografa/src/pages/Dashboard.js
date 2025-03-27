@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/admin/login");
+    navigate("/login"); // Alterado de "/admin/login" para "/login"
   };
 
   const handlePhotoChange = (e) => {
@@ -406,6 +406,7 @@ const Dashboard = () => {
         <button onClick={() => setActiveTab("trabalhos")} className={activeTab === "trabalhos" ? "active" : ""}>Trabalhos</button>
         <button onClick={() => setActiveTab("blog")} className={activeTab === "blog" ? "active" : ""}>Blog</button>
         <button onClick={() => setActiveTab("contatos")} className={activeTab === "contatos" ? "active" : ""}>Contatos</button>
+        <button onClick={() => navigate("/home")}>Home</button>
       </div>
 
       <div className="tab-content">
@@ -446,7 +447,7 @@ const Dashboard = () => {
 
                 {editingProjectId === project._id && (
                   <div>
-                    <h3>Editar Trabalho</h3>
+                    <h3>Editar Nome e Tema do Trabalho</h3>
                     <input type="text" value={editingProjectData.client} onChange={(e) => setEditingProjectData({ ...editingProjectData, client: e.target.value })} />
                     <input type="text" value={editingProjectData.theme} onChange={(e) => setEditingProjectData({ ...editingProjectData, theme: e.target.value })} />
                     <button onClick={handleProjectUpdate}>Atualizar</button>
@@ -508,7 +509,7 @@ const Dashboard = () => {
                 <button onClick={() => handleDeleteBlog(blog._id)} className="delete">Deletar</button>
                 {editingBlogId === blog._id && (
               <div>
-                <h3>Editar Blog</h3>
+                <h3>Editar Título, Texto, Link <br /> e Imagem do Blog</h3>
                   <input
                     type="text"
                     value={editingBlogData.title}

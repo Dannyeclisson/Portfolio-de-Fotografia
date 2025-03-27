@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Portfolio from "./components/Portfolio";
@@ -38,36 +38,49 @@ function App() {
       <ScrollToTop />
       <div>
         <Routes>
-          <Route path="/" element={
-            <>
-              <div id="home">
-                <Navbar />
-              </div>
-              <div id="about">
-                <About />
-              </div>
-              <div id="portfolio">
-                <Portfolio />
-              </div>
-              <div id="blog">
-                <Blog />
-              </div>
-              <div id="contact">
-                <Contact />
-              </div>
-            </>
-          } />
-          <Route path="/portfolio/:id" element={<ProjectDetails />} />
-          
+          {/* Redireciona a raiz para o login */}
+          <Route path="/" element={<Navigate to="/login" replace />} />
+
           {/* Rota de Login */}
           <Route path="/login" element={<Login />} />
 
-          {/* Rota Protegida do Painel de Administração */}
-          <Route path="/admin/dashboard" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
+          {/* Dashboard Protegido */}
+          <Route 
+            path="/admin/dashboard" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+
+          {/* Página Pública (acessível via /home) */}
+          <Route 
+            path="/home" 
+            element={
+              <>
+                <div id="home">
+                  <Navbar />
+                </div>
+                <div id="about">
+                  <About />
+                </div>
+                <div id="portfolio">
+                  <Portfolio />
+                </div>
+                <div id="blog">
+                  <Blog />
+                </div>
+                <div id="contact">
+                  <Contact />
+                </div>
+              </>
+            } 
+          />
+
+          {/* Demais rotas */}
+          <Route path="/portfolio/:id" element={<ProjectDetails />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </div>
     </Router>

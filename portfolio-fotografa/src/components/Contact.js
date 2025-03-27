@@ -43,7 +43,7 @@ const Contact = () => {
         )}
       </div>
       <div className="contact-details">
-        <h2>Contato</h2>
+        <h2>Contatos</h2>
         <p>
           Entre em contato comigo para qualquer dúvida, solicitação de orçamento ou até mesmo para discutir aquele projeto especial que você tem em mente. 
           Estou à disposição para ajudar a transformar suas ideias em realidade e garantir que cada momento seja capturado da melhor maneira possível.

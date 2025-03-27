@@ -1,14 +1,30 @@
 /* Estilo para a seção do Blog */
 .blog-section {
     background-color: inherit; /* Mesma cor de fundo do restante do projeto */
-    padding: 60px 20px;
+    padding: 20px 20px 60px;
     text-align: center;
+  }
+
+  .blog-section h2 {
+    color: #fff5fd; /* Mesma cor usada para os h1 */
+    font-size: 40px; /* Tamanho do título */
+    text-align: center; /* Centraliza o título */
+    position: relative; /* Necessário para posicionar a linha */
+}
+
+  .blog-section h2::after {
+    content: ""; /* Cria a linha */
+    display: block;
+    width: 5%; /* Ajuste a largura da linha */
+    height: 2px; /* Espessura da linha */
+    background-color: #ffffff; /* Cor da linha */
+    margin: 10px auto 0; /* Espaçamento entre o botão e a linha */
   }
   
   .blog-title {
     font-size: 2.5rem;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     color: white; /* Título em branco */
   }
   
