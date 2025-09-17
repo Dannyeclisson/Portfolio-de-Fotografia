@@ -21,7 +21,7 @@ const Portfolio = () => {
 
   return (
     <div className="portfolio-container">
-      <h2>Experiências Profissionais</h2>
+      <h2>Galerias</h2>
       <div className="portfolio-grid">
         {projects.slice(0, visibleProjects).map((project) => (
           <Link 

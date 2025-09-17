@@ -1,78 +1,60 @@
-import React, { useState, useEffect } from "react";
-import { Link as ScrollLink, scroller} from "react-scroll";
+import React, { useEffect } from "react";
+import { scroller } from "react-scroll";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
+import logo from "../images/logo.jpg"; 
 
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleNavigation = (section) => {
-    setMenuOpen(false);
-    
-    // Se NÃO está na página pública, navega para ela primeiro
     if (location.pathname !== "/home") {
-      navigate("/home", {
-        state: { scrollTo: section } // Passa a seção como estado
-      });
+      navigate("/home", { state: { scrollTo: section } });
     } else {
-      // Já está na página pública, apenas faz o scroll
       scroller.scrollTo(section, {
         duration: 500,
         smooth: true,
-        offset: -70 // Ajuste para altura do navbar
+        offset: -70,
       });
     }
   };
 
   useEffect(() => {
-    // Executa scroll após navegação
     if (location.state?.scrollTo) {
       scroller.scrollTo(location.state.scrollTo, {
         duration: 500,
         smooth: true,
-        offset: -70
+        offset: -70,
       });
-      
-      // Limpa o estado para evitar repetição
       navigate(location.pathname, { replace: true, state: {} });
     }
-  }, [location]);
+  }, [location, navigate]);
 
   const menuItems = [
-    { label: "Home", section: "home" },
     { label: "Sobre Mim", section: "about" },
     { label: "Trabalhos", section: "portfolio" },
     { label: "Blog", section: "blog" },
-    { label: "Contatos", section: "contact" }
+    { label: "Contatos", section: "contact" },
+    { label: "Home", section: "home", isButton: true }
   ];
 
   return (
     <nav className="navbar">
-      <button 
-        className="menu-button" 
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        ☰
-      </button>
-      {menuOpen && (
-        <div className="menu">
-          <h1>Clara Amaral</h1>
-          <ul>
-            {menuItems.map((item) => (
-              <li key={item.section}>
-                <span 
-                  onClick={() => handleNavigation(item.section)}
-                  style={{ cursor: "pointer" }}
-                >
-                  {item.label}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <div className="navbar-logo">
+        <img src={logo} alt="Logo" />
+      </div>
+      <ul className="navbar-menu">
+        {menuItems.map((item) => (
+          <li
+            key={item.section}
+            className={item.isButton ? "home-button" : ""}
+            onClick={() => handleNavigation(item.section)}
+          >
+            {item.label}
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }

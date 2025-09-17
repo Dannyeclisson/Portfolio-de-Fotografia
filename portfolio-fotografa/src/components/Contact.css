@@ -23,13 +23,13 @@
 .contact-details {
   flex: 1;
   max-width: 650px;
-  color: white; /* Texto branco */
+  color: #36302A; /* Texto branco */
   padding: 0 20px;
   overflow-y: auto; /* Garante que o conteúdo não ultrapasse a altura */
 }
 
 .contact-details h2 {
-  color: #fff5fd; /* Mesma cor usada para os h1 */
+  color: #36302A; /* Mesma cor usada para os h1 */
   font-size: 40px; /* Tamanho do título */
   margin-bottom: 20px; /* Espaço abaixo do título */
   margin-top: 20px; /* Espaço acima do título */
@@ -41,14 +41,14 @@
   display: block;
   width: 25%; /* Ajuste a largura da linha */
   height: 2px; /* Espessura da linha */
-  background-color: #ffffff; /* Cor da linha */
+  background-color: #36302A; /* Cor da linha */
   margin: 10px 0 0 0; /* Remove o alinhamento central */
 }
 
 .contact-details p {
   font-size: 0.9rem; /* Reduz o tamanho do texto */
   margin-bottom: 10px;
-  color: #e5d0e2; /* Cor do texto dos parágrafos */
+  color: #36302A; /* Cor do texto dos parágrafos */
   text-align: justify;
 }
 
@@ -62,7 +62,7 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 8px;
-  color: #e5d0e2; /* Cor do texto dos parágrafos */
+  color: #36302A; /* Cor do texto dos parágrafos */
 }
 
 .contact-info span i {

@@ -1,102 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
 .about {
-  display: grid;
-  grid-template-columns: 8fr 9fr; /* Ajuste para as colunas da foto e texto */
-  gap: 50px;
-  padding: 80px 20px;;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px 60px; 
   max-width: 900px;
-  margin: 20px auto;
-  background-color: transparent;
+  margin: 0 auto;
+  font-family: 'Crimson Text', serif;
+  /*min-height: 100vh; /* garante que o conteúdo caiba sem scroll inicial */
+  justify-content: flex-start;
+}
+
+.about h1 {
+  color: #36302A;
+  font-size: 65px;
+  text-align: center;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .about-photo {
-  width: 100%; /* Faz a imagem ocupar toda a coluna */
-  border: none; /* Remove bordas da imagem */
-  max-height: 475px;
-  max-width: 380px;
-}
-
-.about-text {
-  display: flex;
-  flex-direction: column; /* Alinha os itens verticalmente */
-  justify-content: center; /* Centraliza verticalmente o texto */
-}
-
-.about-text h1 {
-  color: #fff5fd; /* Cor do nome */
-  font-size: 50px; /* Aumenta o tamanho do nome */
-  margin-bottom: 0px; /* Espaçamento abaixo do nome */
-  margin-top: -40px; /* Mover o nome para cima */
-  text-align: center; /* Centraliza o nome */
-}
-
-.about-text h1::after {
-  content: ""; /* Cria uma linha após o nome */
-  display: block;
-  width: 60%; /* Define a largura da linha */
-  height: 2px; /* Espessura da linha */
-  background-color: #fff; /* Cor da linha */
-  margin: 10px auto 0; /* Centraliza a linha */
-}
-
-.about-text h2 {
-  color: #fff5fd; /* Cor do subtítulo */
-  font-size: 30px; /* Tamanho do subtítulo */
-  text-align: center; /* Centraliza o subtítulo */
-  margin-top: 60px; /* Aumenta a margem superior para descer o título */
- 
-}
-
-.about-details {
-  display: flex;
-  justify-content: space-evenly; /* Distribui os textos igualmente */
-  gap: 20px; /* Espaçamento entre os dois textos */
-  margin-top: 20px; /* Espaçamento entre o título e os textos */
-  border-bottom: 2px solid #fff; /* Adiciona a linha branca abaixo dos textos */
-  padding-bottom: 10px; /* Espaço entre o texto e a linha */
+  width: 100%;
+  max-width: 280px; /* menor para caber na tela inicial */
+  height: auto;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .detail-box {
-  background-color: transparent; /* Torna os quadrados invisíveis */
-  padding: 10px;
-  flex: 1; /* Faz os quadrados ocuparem o mesmo espaço */
-  border-radius: 10px; /* Borda arredondada */
-  border: 1px solid transparent; /* Adiciona uma borda invisível */
-  text-align: justify; /* Justifica o texto */
-  height: 250px; /* Altura fixa para uniformizar os textos */
-  display: flex;
-  flex-direction: column;
-  justify-content: start; /* Centraliza verticalmente o texto */
-  align-items: center; /* Centraliza horizontalmente o conteúdo */
+  text-align: center;
 }
 
 .detail-box h3 {
-  color: #fff5fd; /* Cor dos títulos "Minha Visão" e "Minha Missão" */
-  font-size: 21px; /* Tamanho reduzido para os títulos */
-  margin-bottom: 10px; /* Espaçamento entre o título e o texto */
+  color: #574C3F;
+  font-size: 1.2rem;
+  margin: 3px 0;
+  font-weight: 400; /* mais fininho, sem negrito */
 }
 
-.detail-box p {
-  color: #e5d0e2; /* Cor do texto dos parágrafos */
-  font-size: 14px; /* Tamanho do texto */
-  line-height: 1.4; /* Espaçamento entre as linhas */
-  margin: 0;
+.loading-text,
+.error-text {
+  font-size: 1.2rem;
+  color: #666;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Responsividade para telas menores */
+.error-text {
+  color: #dc3545;
+}
+
+.about-quote {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #36302A;
+  line-height: 1.6;
+  max-width: 650px;
+  padding: 150px 0px 15px;
+  font-weight: 600; /* dá destaque (negrito leve) */
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
   .about {
-    grid-template-columns: 1fr; /* Alinha a foto e texto em uma única coluna */
-    text-align: center; /* Centraliza o texto em telas menores */
+    padding: 100px 15px 40px;
+  }
+
+  .about h1 {
+    font-size: 2.5rem;
   }
 
   .about-photo {
-    width: 100%; /* Faz a imagem ocupar toda a coluna */
-    height: auto; /* Mantém a proporção da imagem */
-    object-fit: cover; /* Faz com que a imagem ocupe todo o espaço da coluna sem distorcer */
+    max-width: 220px;
   }
 
-  .about-details {
-    flex-direction: column; /* Alinha os quadrados verticalmente em telas menores */
-    gap: 10px; /* Espaço entre os quadrados */
+  .detail-box h3 {
+    font-size: 1rem;
+  }
+
+  .about-quote {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about h1 {
+    font-size: 2rem;
+  }
+
+  .about-photo {
+    max-width: 180px;
+  }
+
+  .detail-box h3 {
+    font-size: 0.9rem;
+  }
+
+  .about-quote {
+    font-size: 0.95rem;
   }
 }

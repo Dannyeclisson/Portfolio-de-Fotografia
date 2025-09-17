@@ -1,56 +1,53 @@
+/* Navbar geral */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 05px 20px;
-  background-color: #2d2d2d;
+  padding: 5px 120px;
+  background-color: #fff6ed;
   display: flex;
-  justify-content: flex-end;
-  z-index: 1000; /* Garante que o navbar fique acima de outros elementos */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para destacar o navbar */
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  border-bottom: 1px solid #36302a; /* Linha fina como riscar de lápis/caneta */
+  font-family: url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');;
 }
 
-.menu {
-  position: absolute;
-  top: 50px;
-  right: 0;
-  background-color: #0c0c0c;
-  color: #fff5fd;
-  padding: 20px;
-  border-radius: 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  width: 200px;
-  z-index: 1001; /* Garante que o menu dropdown fique acima do navbar */
+/* Logo */
+.navbar-logo img {
+  height: 40px; /* ajuste se necessário */
 }
 
-.menu-button {
-  background-color: #2d2d2d;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #fff5fd;
-}
-
-.menu h1 {
-  margin-bottom: 15px;
-  color: #fff5fd;
-}
-
-.menu ul {
+/* Itens do menu */
+.navbar-menu {
   list-style: none;
-  padding: 0;
+  display: flex;
+  gap: 5px;
   margin: 0;
+  padding: 0;
 }
 
-.menu li {
-  margin: 10px 0;
-  color: #e5d0e2;
-  font-size: 18px;
+.navbar-menu li {
   cursor: pointer;
+  font-size: 16px;
+  padding: 5px 15px;
+  color: #36302a;
+  transition: color 0.3s;
 }
 
-.menu li:hover {
-  color: #fff5fd;
+.navbar-menu li:hover {
+  color: #b9a590;
+}
+
+/* Botão Home */
+.home-button {
+  border: 1px solid #36302a;
+  padding: 5px 15px;
+  border-radius: 20px;
+  background-color: #fff6ed;
+  box-shadow: none;
+}
+.home-button:hover {
+  background-color: #ece4da;
 }

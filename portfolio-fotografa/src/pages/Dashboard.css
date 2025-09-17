@@ -10,7 +10,7 @@
 
 .dashboard-container h2 {
   text-align: center;
-  color: #fff5fd;
+  color: #36302A;
   font-size: 30px;
   position: relative;
   padding-bottom: 10px;
@@ -21,14 +21,14 @@
   display: block;
   width: 30%;
   height: 2px;
-  background-color: #fff;
+  background-color: #36302A;
   margin: 10px auto 0;
 }
 
 .exit {
   margin-top: 10px;
   padding: 6px 20px;
-  background-color: #fff5fd;
+  background-color: #ECE4DA;
   color: #000;
   font-size: 14px;
   font-family: inherit;
@@ -65,8 +65,8 @@
 .dashboard-container .tabs button {
   margin: 0 10px;
   padding: 6px 20px;
-  background-color: #fff5fd;
-  color: #000;
+  background-color: #746553;
+  color: white;
   font-size: 14px;
   font-family: inherit;
   border: none;
@@ -75,19 +75,19 @@
 }
 
 .dashboard-container .tabs button:hover {
-  background-color: #e692d8;
+  background-color: #574C3F;
   color: white;
 }
 
 .dashboard-container .tabs button.active {
-  background-color: #e7aadd; 
+  background-color: #36302A; 
   color: white;
 }
 
 /* Estilos da área de conteúdo */
 .dashboard-container .tab-content {
   padding: 20px;
-  background-color: #000000;
+  background-color: #ECE4DA;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
   align-content: center;
@@ -95,7 +95,7 @@
 
 .dashboard-container h3,
 .dashboard-container h4 {
-  color: white;
+  color: #36302A;
   text-align: center;
   padding: 10px;
 }
@@ -103,7 +103,7 @@
 .dashboard-container p {
   font-size: 1rem;
   padding: 8px;
-  color: #e5d0e2; /* Cor do texto dos parágrafos */
+  color: #36302A; /* Cor do texto dos parágrafos */
   text-align: justify;
 }
 
@@ -199,8 +199,8 @@
 
 .dashboard-container .project-item {
   padding: 10px;
-  background-color: #000000;
-  border: 1px solid #222222;
+  background-color: #FFF6ED;
+  /*border: 1px solid #222222;*/
   border-radius: 5px;
   margin-bottom: 15px;
   text-align: center;
@@ -247,8 +247,8 @@
 
 .blog-item{
   padding: 10px;
-  background-color: #000000;
-  border: 1px solid #222222;
+  background-color: #FFF6ED;
+  /*border: 1px solid #222222;*/
   border-radius: 5px;
   margin-bottom: 15px;
   text-align: center;

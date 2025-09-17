@@ -6,7 +6,7 @@
   }
 
   .blog-section h2 {
-    color: #fff5fd; /* Mesma cor usada para os h1 */
+    color: #36302A; /* Mesma cor usada para os h1 */
     font-size: 40px; /* Tamanho do título */
     text-align: center; /* Centraliza o título */
     position: relative; /* Necessário para posicionar a linha */
@@ -17,7 +17,7 @@
     display: block;
     width: 5%; /* Ajuste a largura da linha */
     height: 2px; /* Espessura da linha */
-    background-color: #ffffff; /* Cor da linha */
+    background-color: #36302A; /* Cor da linha */
     margin: 10px auto 0; /* Espaçamento entre o botão e a linha */
   }
   
@@ -25,7 +25,7 @@
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 25px;
-    color: white; /* Título em branco */
+    color: black; /* Título em branco */
   }
   
   .blog-posts {
@@ -51,21 +51,21 @@
   .blog-post h3 {
     font-size: 1.5rem;
     margin: 15px 0;
-    color: white; /* Títulos em branco */
+    color: black; /* Títulos em branco */
   }
   
   .blog-post p {
     font-size: 1rem;
     padding: 0 10px;
-    color: #e5d0e2; /* Cor do texto dos parágrafos */
+    color: #36302A; /* Cor do texto dos parágrafos */
     text-align: justify;
   }
   
   .blog-post button {
     margin-top: 20px;
     padding: 4px 18px; /* Ajuste de tamanho do botão */
-    background-color: #fff5fd; /* Cor do botão */
-    color: #000; /* Texto preto */
+    background-color: #36302A; /* Cor do botão */
+    color: white; /* Texto preto */
     font-size: 14px; /* Reduz o tamanho da fonte */
     font-family: inherit; /* Garante que a fonte seja a mesma do restante */
     border: none;
@@ -74,6 +74,6 @@
   }
   
   .blog-post button:hover {
-    background-color: #0056b3;
+    background-color: #574C3F;
   }
   
