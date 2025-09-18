@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import galerias from "../images/galerias.jpg";
 import './Portfolio.css';
 
 const Portfolio = () => {
@@ -20,8 +21,11 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="portfolio-container">
-      <h2>Galerias</h2>
+          <div className="portfolio">
+            <div className="portfolio-hero">
+        <img src={galerias} alt="Galerias" className="portfolio-hero-image"/>
+        <h2 className="portfolio-hero-title">Galerias</h2>
+      </div>
       <div className="portfolio-grid">
         {projects.slice(0, visibleProjects).map((project) => (
           <Link 
