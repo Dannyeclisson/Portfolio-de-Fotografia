@@ -29,10 +29,10 @@ router.get('/', async (req, res) => {
 // Adicionar novo projeto
 router.post('/', upload.single('image'), async (req, res) => {
   try {
-    const { client, theme } = req.body;
+    const { theme } = req.body;
     const image = req.file.path;
 
-    const newProject = new Project({ client, theme, image });
+    const newProject = new Project({ theme, image });
     await newProject.save();
 
     res.status(201).json(newProject);
@@ -62,11 +62,11 @@ router.put('/:id', async (req, res) => {
   console.log('Entrou na rota PUT /portfolio/:id');
   try {
     const { id } = req.params;
-    const { client, theme } = req.body;
+    const { theme } = req.body;
 
     const updatedProject = await Project.findByIdAndUpdate(
       id,
-      { client, theme },
+      { theme },
       { new: true } // Retorna o projeto atualizado
     );
 

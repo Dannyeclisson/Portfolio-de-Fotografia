@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 
 const ProjectSchema = new mongoose.Schema(
   {
-    client: { type: String, required: true },
     theme: { type: String, required: true },
     image: { type: String, required: true },
-    photos: [{ type: String }] // Array para armazenar as URLs das fotos
+    photos: [{ type: String }] // Array para armazenar as URLs das fotos extras
   },
   { timestamps: true }
 );

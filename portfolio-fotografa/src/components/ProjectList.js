@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const Portfolio = () => {
+const ProjectList = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -21,21 +21,40 @@ const Portfolio = () => {
   return (
     <div>
       <h1>Portfolio</h1>
-      <div>
+      <div style={{ 
+        columnCount: 3, 
+        columnGap: '20px' 
+      }}>
         {projects.map((project) => (
           <Link 
-            to={`/portfolio/${project._id}`} // Direciona para a página de detalhes do projeto
+            to={`/portfolio/${project._id}`}
             key={project._id}
-            style={{ textDecoration: 'none', color: 'inherit' }}
+            style={{ 
+              textDecoration: 'none', 
+              color: 'inherit', 
+              display: 'inline-block', 
+              marginBottom: '20px',
+              width: '100%'
+            }}
           >
             <div>
-              <h2>{project.client}</h2>
-              <p>{project.theme}</p>
               <img 
                 src={`http://localhost:5000/${project.image}`} 
-                alt={project.client} 
-                style={{ width: '200px', height: 'auto' }} 
+                alt={project.theme} 
+                style={{ 
+                  width: '100%', 
+                  height: 'auto', 
+                  display: 'block',
+                  marginBottom: '8px'
+                }} 
               />
+              <p style={{ 
+                textAlign: 'center', 
+                fontSize: '1rem', 
+                color: '#36302A' 
+              }}>
+                {project.theme}
+              </p>
             </div>
           </Link>
         ))}
@@ -44,4 +63,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default ProjectList;

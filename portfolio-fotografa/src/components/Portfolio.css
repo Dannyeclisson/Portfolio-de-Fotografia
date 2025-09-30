@@ -1,56 +1,30 @@
-.portfolio-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px 20px;
-    max-width: 900px;
-    margin: 20px auto;
-    background-color: transparent;
-}
-
-.portfolio-container h2 {
-    color: #36302A; /* Mesma cor usada para os h1 */
-    font-size: 40px; /* Tamanho do título */
-    text-align: center; /* Centraliza o título */
-    margin-bottom: 20px; /* Espaço abaixo do título */
-    margin-top: 20px; /* Espaço acima do título */
-    position: relative; /* Necessário para posicionar a linha */
-}
-
-.portfolio-container h2::after {
-    content: ""; /* Cria a linha abaixo do título */
-    display: block;
-    width: 90%; /* Ajuste a largura da linha */
-    height: 2px; /* Espessura da linha */
-    background-color:#36302A; /* Cor da linha */
-    margin: 10px auto 0; /* Centraliza e adiciona espaço entre a linha e o título */
-}
-
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Define 3 colunas */
-    column-gap: 20px; /* Espaçamento horizontal entre os itens */
-    row-gap: 20px; /* Espaçamento vertical entre os itens */
-    width: 100%; /* Garante que o grid ocupe toda a largura disponível */
-    justify-content: center;
-    margin-top: 20px;
-    justify-items: center; /* Centraliza os itens dentro das colunas */
+.portfolio {
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: transparent;
 }
 
 /* Hero Section */
 .portfolio-hero {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
   height: 250px;
   overflow: hidden;
   margin-bottom: 30px;
+  left: 0;
 }
 
 .portfolio-hero-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  clip-path: ellipse(100% 90% at 50% 0%);
+  display: block;
+  /* Efeito côncavo */
+  border-radius:0 0 25% 25% / 0 0 35% 35%;
 }
 
 .portfolio-hero-title {
@@ -63,104 +37,100 @@
   font-weight: 600;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
   font-family: 'Crimson Text', serif;
+  z-index: 2;
+}
+
+/* Masonry Layout */
+.portfolio-grid {
+  column-count: 3;
+  column-gap: 20px;
+  width: 100%;
+  padding-bottom: 20px;
 }
 
 .portfolio-item {
-    background-color: #ffffff10; /* Fundo levemente transparente */
-    overflow: hidden; /* Garante que o conteúdo não ultrapasse o limite */
-    text-align: center;
-    transition: transform 0.3s ease; /* Efeito ao passar o mouse */
-    cursor: pointer;
-    width: 100%; /* Ajusta automaticamente com base no tamanho da coluna */
-    min-width: 250px; /* Limita a largura máxima */
-    max-width: 250px; /* Limita o tamanho máximo */
-    flex-grow: 1;
-    height: 250px; /* Altura fixa */
-    margin: 0; /* Remove margens adicionais */
-    padding: 0; /* Remove qualquer padding */
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 20px;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.3s ease;
 }
 
 .portfolio-item:hover {
-    transform: scale(1.05); /* Aumenta ligeiramente o quadrado ao passar o mouse */
+  transform: translateY(-5px);
 }
 
-.portfolio-item img {
-    display: block; /* Remove espaço gerado pelo modo inline-block */
-    border: 0; /* Garante que não há bordas extras */
-    width: 100%;
-    height: 210px;
-    object-fit: cover;
-    margin: 0;
-    padding: 0;
+.portfolio-item-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
 }
 
-.portfolio-info {
-    padding: 0; /* Remove padding extra */
-    background-color: #ffffff;
-    color: #000000;
-    height: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 1px solid #ddd;
-    margin: 0; /* Remove qualquer margem entre os elementos */
+.portfolio-theme {
+  margin-top: 6px;
+  font-size: 1rem;
+  color: #36302A;
+  font-family: 'Crimson Text', serif;
+  font-weight: 500;
+  padding-left: 2px;
 }
 
-.portfolio-info h3 {
-    font-size: 18px; /* Tamanho do texto */
-    color: #000000; /* Título preto */
+/* Link que envolve o item */
+.portfolio-link {
+  text-decoration: none;
+  color: inherit;
 }
 
-.portfolio-info p {
-    margin: 0;
-    font-size: 14px; /* Tamanho do subtítulo */
-    color: #000000; /* Subtítulo preto */
+/* Prevenir rolagem horizontal globalmente */
+body, html {
+  overflow-x: hidden;
 }
 
-/* Botão "Veja Mais" */
-.see-more-container {
-    text-align: center; /* Centraliza o botão no contêiner */
-    margin-top: 20px; /* Espaço acima do contêiner */
-    position: relative; /* Necessário para a linha */
+/* Responsividade */
+@media (max-width: 1100px) {
+  .portfolio-grid {
+    column-count: 2;
+  }
 }
 
-.portfolio-container::after {
-    content: ""; /* Cria a linha */
-    display: block;
-    width: 60%; /* Ajuste a largura da linha */
-    height: 2px; /* Espessura da linha */
-    background-color: #36302A; /* Cor da linha */
-    margin: 10px auto 0; /* Espaçamento entre o botão e a linha */
-}
-
-.see-more-button {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 4px 18px; /* Ajuste de tamanho do botão */
-    background-color: #36302A; /* Cor do botão */
-    color: white; /* Texto preto */
-    font-size: 14px; /* Reduz o tamanho da fonte */
-    font-family: inherit; /* Garante que a fonte seja a mesma do restante */
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.see-more-button:hover {
-    background-color: #574C3F; /* Cor mais escura ao passar o mouse */
-}
-
-/* Responsividade para telas menores */
 @media (max-width: 768px) {
-    .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas médias */
-    }
+  .portfolio-grid {
+    column-count: 1;
+  }
 
-    .portfolio-container h2 {
-        font-size: 36px; /* Reduz o tamanho do título em telas menores */
-    }
+  .portfolio-hero {
+    height: 180px;
+  }
 
-    .portfolio-item {
-        width: 100%; /* Garante que o item ocupe a largura disponível */
-    }
+  .portfolio-hero-title {
+    font-size: 36px;
+  }
+  
+  .portfolio-hero-image {
+    border-radius: 0 0 40% 40% / 0 0 20% 20%;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio {
+    padding: 15px 10px;
+  }
+  
+  .portfolio-hero {
+    height: 150px;
+  }
+  
+  .portfolio-hero-title {
+    font-size: 28px;
+  }
+  
+  .portfolio-hero-image {
+    border-radius: 0 0 35% 35% / 0 0 15% 15%;
+  }
 }
