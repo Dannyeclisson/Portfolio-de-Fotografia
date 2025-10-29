@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 45px 20px 60px; 
+  padding: 65px 20px 60px; 
   max-width: 900px;
   margin: 0 auto;
   font-family: 'Crimson Text', serif;
@@ -14,7 +14,7 @@
 
 .about h1 {
   color: #36302A;
-  font-size: 65px;
+  font-size: 85px;
   text-align: center;
 }
 
@@ -38,7 +38,7 @@
 
 .detail-box h3 {
   color: #574C3F;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin: 3px 0;
   font-weight: 400; /* mais fininho, sem negrito */
 }
@@ -59,10 +59,10 @@
 
 .about-quote {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #36302A;
   line-height: 1.6;
-  max-width: 650px;
+  max-width: 800px;
   padding: 150px 0px 15px;
   font-weight: 600; /* dá destaque (negrito leve) */
 }
