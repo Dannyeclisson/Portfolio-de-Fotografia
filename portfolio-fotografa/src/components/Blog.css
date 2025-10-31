@@ -1,79 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
 /* Estilo para a seção do Blog */
 .blog-section {
-    background-color: inherit; /* Mesma cor de fundo do restante do projeto */
-    padding: 20px 20px 60px;
-    text-align: center;
-  }
-
-  .blog-section h2 {
-    color: #36302A; /* Mesma cor usada para os h1 */
-    font-size: 40px; /* Tamanho do título */
-    text-align: center; /* Centraliza o título */
-    position: relative; /* Necessário para posicionar a linha */
+  background-color: inherit;
+  padding: 20px 20px 60px;
+  text-align: center;
+  font-family: 'Crimson Text', serif;
 }
 
-  .blog-section h2::after {
-    content: ""; /* Cria a linha */
-    display: block;
-    width: 5%; /* Ajuste a largura da linha */
-    height: 2px; /* Espessura da linha */
-    background-color: #36302A; /* Cor da linha */
-    margin: 10px auto 0; /* Espaçamento entre o botão e a linha */
+.blog-section h2 {
+  color: #36302A;
+  font-size: 40px;
+  text-align: center;
+  position: relative;
+  font-family: 'Crimson Text', serif;
+  font-weight: 600;
+}
+
+.blog-section h2::after {
+  content: "";
+  display: block;
+  width: 5%;
+  height: 2px;
+  background-color: #36302A;
+  margin: 10px auto 0;
+}
+
+.blog-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: black;
+  font-family: 'Crimson Text', serif;
+}
+
+/* Layout Masonry com efeito escadinha */
+.blog-posts-masonry {
+  display: grid;
+  grid-template-columns: repeat(2, 500px);
+  justify-content: center;
+  gap: 0;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  font-family: 'Crimson Text', serif;
+}
+
+/* Cartão base */
+.blog-post-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 500px;
+  position: relative;
+  margin-bottom: 15px;
+  font-family: 'Crimson Text', serif;
+}
+
+/* Efeito escadinha - padrão alternado */
+.masonry-item-0,
+.masonry-item-3 {
+  height: 280px;
+  transform: translateX(20px) translateY(10px);
+  z-index: 1;
+}
+
+.masonry-item-1,
+.masonry-item-4 {
+  height: 320px;
+  transform: translateX(-25px) translateY(40px);
+  z-index: 2;
+}
+
+.masonry-item-2,
+.masonry-item-5 {
+  height: 300px;
+  transform: translateX(15px) translateY(20px);
+  z-index: 3;
+}
+
+/* Hover MÍNIMO - quase imperceptível */
+.blog-post-card:hover {
+  transform: translateY(-1px) !important;
+  z-index: 100;
+}
+
+/* Container da imagem */
+.post-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Imagem */
+.post-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.blog-post-card:hover .post-image {
+  transform: scale(1.01);
+}
+
+/* Overlay do conteúdo - SEMPRE VISÍVEL */
+.post-content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0.2) 0%, 
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.7) 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+  border-radius: 8px;
+  opacity: 1;
+  transition: all 0.2s ease;
+  font-family: 'Crimson Text', serif;
+}
+
+/* Texto centralizado - SEMPRE VISÍVEL */
+.post-content-overlay h3 {
+  margin: 0 0 15px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  font-family: 'Crimson Text', serif;
+}
+
+.post-content-overlay p {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.9;
+  line-height: 1.4;
+  text-align: center;
+  max-width: 80%;
+  font-family: 'Crimson Text', serif;
+  font-weight: 400;
+}
+
+/* Efeito MÍNIMO no hover do overlay */
+.blog-post-card:hover .post-content-overlay {
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0.25) 0%, 
+    rgba(0, 0, 0, 0.55) 50%,
+    rgba(0, 0, 0, 0.75) 100%);
+}
+
+/* Responsividade */
+@media (max-width: 1100px) {
+  .blog-posts-masonry {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+  
+  .blog-post-card {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 20px auto;
+    transform: none !important;
+    height: 300px !important;
+  }
+  
+  .blog-post-card:hover {
+    transform: translateY(-1px) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .blog-posts-masonry {
+    padding: 10px;
+  }
+  
+  .blog-post-card {
+    height: 250px !important;
+  }
+  
+  .post-content-overlay {
+    padding: 20px;
+  }
+  
+  .post-content-overlay h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  
+  .post-content-overlay p {
+    font-size: 0.9rem;
+    max-width: 90%;
+    font-weight: 400;
+  }
+  
+  .blog-section h2 {
+    font-size: 2rem;
+    font-weight: 600;
   }
   
   .blog-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 25px;
-    color: black; /* Título em branco */
+    font-size: 2rem;
+    font-weight: 600;
   }
-  
-  .blog-posts {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .blog-post {
-    background-color: inherit; /* Mesma cor do fundo */
-    width: 260px;
-    text-align: center;
-    border: none; /* Remove bordas */
-  }
-  
-  .blog-post img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .blog-post h3 {
-    font-size: 1.5rem;
-    margin: 15px 0;
-    color: black; /* Títulos em branco */
-  }
-  
-  .blog-post p {
-    font-size: 1rem;
-    padding: 0 10px;
-    color: #36302A; /* Cor do texto dos parágrafos */
-    text-align: justify;
-  }
-  
-  .blog-post button {
-    margin-top: 20px;
-    padding: 4px 18px; /* Ajuste de tamanho do botão */
-    background-color: #36302A; /* Cor do botão */
-    color: white; /* Texto preto */
-    font-size: 14px; /* Reduz o tamanho da fonte */
-    font-family: inherit; /* Garante que a fonte seja a mesma do restante */
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .blog-post button:hover {
-    background-color: #574C3F;
-  }
-  
+}

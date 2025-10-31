@@ -17,20 +17,30 @@ const Blog = () => {
 
   return (
     <div className="blog-section">
-      <h2 className="blog-title">Blog</h2>
       {loading ? (
         <p>Carregando posts...</p>
       ) : (
-        <div className="blog-posts">
-          {posts.map((post) => (
-            <div className="blog-post" key={post._id}>
-              <img src={`http://localhost:5000/${post.image}`} alt={post.title} />
-              <h3>{post.title}</h3>
-              <p>{post.description}</p>
-              <a href={post.link} target="_blank" rel="noopener noreferrer">
-                <button>Veja Mais</button>
-              </a>
-            </div>
+        <div className="blog-posts-masonry">
+          {posts.map((post, index) => (
+            <a 
+              href={post.link} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={`blog-post-card masonry-item-${index % 6}`} 
+              key={post._id}
+            >
+              <div className="post-image-container">
+                <img 
+                  src={`http://localhost:5000/${post.image}`} 
+                  alt={post.title} 
+                  className="post-image"
+                />
+                <div className="post-content-overlay">
+                  <h3>{post.title}</h3>
+                  <p>{post.description}</p>
+                </div>
+              </div>
+            </a>
           ))}
         </div>
       )}
